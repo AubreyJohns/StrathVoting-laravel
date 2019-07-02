@@ -24,7 +24,13 @@ class CandidateController extends Controller
 
     public function store(Request $request)
     {
-        $candidate = Candidate::create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto]);
+        if($request->hasFile('image')){
+            $avatar = $request->file('image');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            $image = Image::make($avatar)->encode('png');
+            $image ->resize(268, 249)->save(  '/uploads/images/candidates_images/' . $filename );
+        }
+        $candidate = Candidate::create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $request->image]);
 
         return response()->json($candidate);
     }
