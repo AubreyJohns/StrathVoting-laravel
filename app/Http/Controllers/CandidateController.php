@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 // include composer autoload
 //require 'vendor/autoload.php';
 
-// import the Intervention Image Manager Class
-use Intervention\Image\ImageManager;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class CandidateController extends Controller
 {
