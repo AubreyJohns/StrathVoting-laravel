@@ -18,8 +18,8 @@ class CreateCandidatesTable extends Migration
             $table->string('name');
             $table->string('position');
             $table->text('manifesto');
-            $table->binary('image');
-            $table->integer('votes');
+            $table->binary('image')->nullable();
+            $table->integer('votes')->nullable();
             $table->timestamps();
         });
     }

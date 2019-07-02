@@ -24,7 +24,7 @@ class CandidateController extends Controller
 
     public function store(Request $request)
     {
-        $candidate = Candidate::create($request->all());
+        $candidate = Candidate::create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto]);
 
         return response()->json($candidate);
     }
