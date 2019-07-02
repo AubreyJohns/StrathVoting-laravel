@@ -28,13 +28,13 @@ class CandidateController extends Controller
 
     public function store(Request $request)
     {
-        if($request->hasFile('image')){
-            $avatar = $request->file('image');
-            $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            $image = Image::make($avatar)->encode('png');
-            $image ->resize(268, 249)->save(  '/uploads/images/candidates_images/' . $filename );
+        $image = $request->image;
+        if ($image){
+            $imageName= "uploads/".basename($image->getClientOriginalName());
+            $image->move('uploads',$imageName);
+           
         }
-        $candidate = Candidate::create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $request->image]);
+        $candidate = Candidate::create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
 
         return response()->json($candidate);
     }
