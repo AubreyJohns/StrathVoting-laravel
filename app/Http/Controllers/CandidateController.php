@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 use App\Candidate;
 use Illuminate\Http\Request;
+// include composer autoload
+//require 'vendor/autoload.php';
+
+// import the Intervention Image Manager Class
+use Intervention\Image\ImageManager;
 
 class CandidateController extends Controller
 {
