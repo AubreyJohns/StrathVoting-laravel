@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 });
 
     Route::get('candidates', 'CandidateController@index');
-    Route::get('candidatesName', 'CandidateController@candidatesName');
+    Route::get('candidatesImages', 'CandidateController@candidatesImages');
     Route::get('candidates/{candidate}', 'CandidateController@show');
     Route::post('candidates', 'CandidateController@store');
     Route::post('candidates/{candidate}', 'CandidateController@update');
