@@ -34,7 +34,7 @@ class CandidateController extends Controller
             $image->move('uploads',$imageName);
            
         }
-        $candidate = Candidate::create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
+        $candidate->create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
 
         return response()->json($candidate);
     }
