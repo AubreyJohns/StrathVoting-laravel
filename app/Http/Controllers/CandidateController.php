@@ -16,12 +16,6 @@ class CandidateController extends Controller
         return Candidate::all();
     }
 
-    public function candidatesImages()
-    {
-        $candidate=Candidate::select('image')->get();
-        return response()->json($candidate);
-    }
-
     public function show(Candidate $candidate)
     {
         return $candidate;
@@ -33,9 +27,6 @@ class CandidateController extends Controller
         $imageName= $image->getClientOriginalName();
         $imagePath=public_path('uploads');
         $trial = $image->move($imagePath,$imageName);
-        //$image = Image::make($image)->encode('png');
-        //Storage::disk('public')->put($imageName, $image);
-        //$image ->save( '..'.$imagePath . $imageName );
         if($trial){
         $candidate=Candidate::create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
         }
@@ -48,14 +39,9 @@ class CandidateController extends Controller
         $imageName= $image->getClientOriginalName();
         $imagePath=public_path('uploads');
         $trial = $image->move($imagePath,$imageName);
-        //$image = Image::make($image)->encode('png');
-        //Storage::disk('public')->put($imageName, $image);
-        //$image ->save( '..'.$imagePath . $imageName );
         if($trial){
-        $candidate=Candidate::create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
+            $candidate->update(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
         }
-        $candidate->update(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
-
         return response()->json($candidate);
     }
 
