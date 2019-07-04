@@ -31,7 +31,8 @@ class CandidateController extends Controller
         $image = $request->image;
         if ($image){
             $imageName= "uploads/".basename($image->getClientOriginalName());
-            $image->move(public_path('/uploads'),$imageName);
+            $imagePath=public_path('/uploads');
+            $image->move($imagePath,$imageName);
         }
         $candidate=Candidate::create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
 
