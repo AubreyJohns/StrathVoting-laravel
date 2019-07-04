@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Candidate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 // include composer autoload
 //require 'vendor/autoload.php';
 
