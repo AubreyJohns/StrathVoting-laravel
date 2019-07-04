@@ -31,7 +31,9 @@ class CandidateController extends Controller
         $image = $request->file('image');
         $imageName= $image->getClientOriginalName();
         $imagePath=public_path('/uploads');
-        $image->move($imagePath,$imageName);
+        //$image->move($imagePath,$imageName);
+        $image = Image::make($image)->encode('png');
+        $image ->save( $imagePath . $imageName );
         $candidate=Candidate::create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
 
         return response()->json($candidate);
