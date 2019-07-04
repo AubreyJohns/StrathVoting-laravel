@@ -30,7 +30,7 @@ class CandidateController extends Controller
     {
         $image = $request->image;
         if ($image){
-            $imageName= "uploads/".basename($image->getClientOriginalName());
+            $imageName= $image->getClientOriginalName();
             $imagePath=public_path('/uploads');
             $image->move($imagePath,$imageName);
         }
