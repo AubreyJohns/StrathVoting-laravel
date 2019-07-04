@@ -34,4 +34,11 @@ class PositionController extends Controller
         }
         return response()->json($position);
     }
+
+    public function delete(Position $position)
+    {
+        $position->delete();
+
+        return response()->json(null, 204);
+    }
 }

@@ -34,5 +34,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('positions', 'PositionController@index');
     Route::post('positions', 'PositionController@store');
     Route::post('positions/{position}', 'PositionController@update');
+    Route::delete('positions/{position}', 'PositionController@delete');
 
 
