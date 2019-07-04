@@ -45,10 +45,14 @@ class CandidateController extends Controller
     public function update(Request $request, Candidate $candidate)
     {
         $image = $request->image;
-        if ($image){
-            $imageName= "uploads/".basename($image->getClientOriginalName());
-            $image->move('uploads',$imageName);
-           
+        $imageName= $image->getClientOriginalName();
+        $imagePath=public_path('uploads');
+        $trial = $image->move($imagePath,$imageName);
+        //$image = Image::make($image)->encode('png');
+        //Storage::disk('public')->put($imageName, $image);
+        //$image ->save( '..'.$imagePath . $imageName );
+        if($trial){
+        $candidate=Candidate::create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
         }
         $candidate->update(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
 
