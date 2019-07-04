@@ -18,7 +18,7 @@ class PositionController extends Controller
         $imagePath=public_path('uploads');
         $trial = $image->move($imagePath,$imageName);
         if($trial){
-        $position=Position::create(['position' => $request->position,'image' => $request->$imageName]);
+        $position=Position::create(['position' => $request->position,'image' => $imageName]);
         }
         return response()->json($position);
     }
@@ -30,7 +30,7 @@ class PositionController extends Controller
         $imagePath=public_path('uploads');
         $trial = $image->move($imagePath,$imageName);
         if($trial){
-        $position->update(['position' => $request->position,'image' => $request->$imageName]);
+        $position->update(['position' => $request->position,'image' => $imageName]);
         }
         return response()->json($position);
     }
