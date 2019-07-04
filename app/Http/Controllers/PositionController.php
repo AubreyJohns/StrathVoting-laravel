@@ -13,7 +13,25 @@ class PositionController extends Controller
 
     public function store(Request $request)
     {
-        $position=Position::create(['position' => $request->position]);
+        $image = $request->image;
+        $imageName= $image->getClientOriginalName();
+        $imagePath=public_path('uploads');
+        $trial = $image->move($imagePath,$imageName);
+        if($trial){
+        $position=Position::create(['position' => $request->position,'image' => $request->image]);
+        }
+        return response()->json($position);
+    }
+
+    public function update(Request $request, Position $positon)
+    {
+        $image = $request->image;
+        $imageName= $image->getClientOriginalName();
+        $imagePath=public_path('uploads');
+        $trial = $image->move($imagePath,$imageName);
+        if($trial){
+            $position->update(['position' => $request->position,'image' => $request->image]);
+        }
         return response()->json($position);
     }
 }
