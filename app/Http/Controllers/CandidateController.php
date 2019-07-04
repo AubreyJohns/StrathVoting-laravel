@@ -29,8 +29,8 @@ class CandidateController extends Controller
     public function store(Request $request)
     {
         $image = $request->file('image');
-        $imageName= 'uploads/'.$image->getClientOriginalName();
-        $imagePath=public_path('/uploads');
+        $imageName= $image->getClientOriginalName();
+        $imagePath=public_path('/uploads/');
         //$image->move($imagePath,$imageName);
         $image = Image::make($image)->encode('png');
         $image ->save( $imagePath . $imageName );
