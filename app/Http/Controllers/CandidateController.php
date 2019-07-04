@@ -31,10 +31,10 @@ class CandidateController extends Controller
     {
         $image = $request->file('image');
         $imageName= $image->getClientOriginalName();
-        //$imagePath=public_path('uploads/');
-        //$image->move($imagePath,$imageName);
+        $imagePath=public_path('uploads');
+        $image->move($imagePath,$imageName);
         //$image = Image::make($image)->encode('png');
-        Storage::disk('public')->put($imageName, $image);
+        //Storage::disk('public')->put($imageName, $image);
         //$image ->save( '..'.$imagePath . $imageName );
         $candidate=Candidate::create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
 
