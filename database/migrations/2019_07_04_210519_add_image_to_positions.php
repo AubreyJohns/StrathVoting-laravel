@@ -14,7 +14,7 @@ class AddImageToPositions extends Migration
     public function up()
     {
         Schema::table('positions', function($table) {
-            $table->string('image');
+            $table->string('image')->nullable();
         });
     }
 
