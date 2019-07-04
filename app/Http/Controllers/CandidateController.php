@@ -28,12 +28,10 @@ class CandidateController extends Controller
 
     public function store(Request $request)
     {
-        $image = $request->image;
-        if ($image){
-            $imageName= $image->getClientOriginalName();
-            $imagePath=public_path('/uploads');
-            $image->move($imagePath,$imageName);
-        }
+        $image = $request->file('image');
+        $imageName= $image->getClientOriginalName();
+        $imagePath=public_path('/uploads');
+        $image->move($imagePath,$imageName);
         $candidate=Candidate::create(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
 
         return response()->json($candidate);
