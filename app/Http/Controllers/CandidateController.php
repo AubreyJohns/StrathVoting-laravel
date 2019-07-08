@@ -49,16 +49,17 @@ class CandidateController extends Controller
     {
         $newVote=$request->votes;
 
-        $currentVotes=$candidate->get('votes');;
+        $currentVotes=Candidate::where('name',$request->name)->get('votes');
         $votes=$newVote+$currentVotes;
 
         $image = $request->image;
         $imageName= $image->getClientOriginalName();
         $imagePath=public_path('uploads');
         $trial = $image->move($imagePath,$imageName);
-        if($trial){
+        //if($trial){}
+            
             $candidate->update(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'votes' =>$votes ]);
-        }
+        
         return response()->json($candidate);
     }
 
