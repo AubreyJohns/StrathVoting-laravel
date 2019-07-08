@@ -49,7 +49,7 @@ class CandidateController extends Controller
     {
         $newVote=$request->votes;
 
-        $currentVotes=Candidate::whereIn('name',$request->name)->get('votes');
+        $currentVotes=Candidate::where('name',$request->name)->get(['votes']);
         $votes=$newVote+$currentVotes;
 
         $image = $request->image;
