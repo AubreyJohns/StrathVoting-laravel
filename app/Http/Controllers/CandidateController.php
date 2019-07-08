@@ -60,7 +60,7 @@ class CandidateController extends Controller
         //if($trial){}
             */
             $candidate->update(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'votes' =>$votes ]);
-            $candidate = Candidate::all()->where('name',$request->name);
+            
         return response()->json($candidate);
     }
 
