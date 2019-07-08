@@ -47,12 +47,17 @@ class CandidateController extends Controller
 
     public function update(Request $request, Candidate $candidate)
     {
+        $newVote=$request->votes;
+
+        $currentVotes=$candidate->get('votes');;
+        $votes=$newVote+$currentVotes;
+
         $image = $request->image;
         $imageName= $image->getClientOriginalName();
         $imagePath=public_path('uploads');
         $trial = $image->move($imagePath,$imageName);
         if($trial){
-            $candidate->update(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'image' => $imageName]);
+            $candidate->update(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'votes' =>$votes ]);
         }
         return response()->json($candidate);
     }
