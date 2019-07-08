@@ -62,7 +62,7 @@ class CandidateController extends Controller
             */
             $candidate->update(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'votes' =>$votes ]);
             $candidate = Candidate::all()->where('name',$request->name);
-        return response()->json($candidate[0]);
+        return response()->json([$candidate]);
     }
 
     public function delete(Candidate $candidate)
