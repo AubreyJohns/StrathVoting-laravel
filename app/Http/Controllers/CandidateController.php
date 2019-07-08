@@ -27,6 +27,12 @@ class CandidateController extends Controller
         return response()->json($candidate);
     }
 
+    public function candidateDetails(Request $request)
+    {
+        $candidate=Candidate::where('name',$request->name)->get();
+        return response()->json($candidate);
+    }
+
     public function store(Request $request)
     {
         $image = $request->image;
