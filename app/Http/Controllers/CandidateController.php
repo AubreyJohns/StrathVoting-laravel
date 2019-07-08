@@ -51,7 +51,7 @@ class CandidateController extends Controller
 
         $currentVotes=Candidate::where('name',$request->name)->get(['votes']);
         $currentVote=$currentVotes->pluck('votes');
-        $votes=$newVote+$currentVotes[0];
+        $votes=$newVote+$currentVote[0];
 
         $image = $request->image;
         $imageName= $image->getClientOriginalName();
