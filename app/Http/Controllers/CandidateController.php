@@ -60,8 +60,8 @@ class CandidateController extends Controller
         //if($trial){}
             */
             $candidate->update(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'votes' =>$votes ]);
-        
-        return $candidate;
+        $candidate = json_encode($candidate);
+        return response()->json($candidate);
     }
 
     public function delete(Candidate $candidate)
