@@ -61,7 +61,7 @@ class CandidateController extends Controller
             */
             $candidate->update(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'votes' =>$votes ]);
         
-        return response()->json($candidate);
+        return $candidate;
     }
 
     public function delete(Candidate $candidate)
