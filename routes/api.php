@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('candidatePosition/{position}', 'CandidateController@candidatePosition')->name('candidatePosition');
     Route::get('candidateDetails/{name}', 'CandidateController@candidateDetails')->name('candidateDetails');
     Route::post('candidates', 'CandidateController@store');
-    Route::post('candidates/{candidate}', 'CandidateController@update');
+    Route::put('candidates/{candidate}', 'CandidateController@update');
     Route::delete('candidates/{candidate}', 'CandidateController@delete');
 
     Route::get('positions', 'PositionController@index');
