@@ -50,7 +50,7 @@ class CandidateController extends Controller
     {
         $newVote=$request->votes;
 
-        $currentVotes=Candidate::where('name',$request('name'))->get(['votes']);
+        $currentVotes=Candidate::where('name',$request->name)->get(['votes']);
         $currentVote=$currentVotes->pluck('votes');
         $votes=$newVote+$currentVote[0];
 /*
