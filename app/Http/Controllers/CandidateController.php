@@ -51,6 +51,7 @@ class CandidateController extends Controller
         $newVote=$request->votes;
 
         $currentVotes=Candidate::where('name',$request->name)->get(['votes']);
+        return response()->json($currentVotes);
         $currentVote=$currentVotes->pluck('votes');
         $votes=$newVote+$currentVote[0];
 /*
@@ -67,7 +68,7 @@ class CandidateController extends Controller
                 'votes' =>$votes 
                 ]);
             
-        return $candidate;
+        return response()->json($candidate);
     }
 
     public function delete(Candidate $candidate)
