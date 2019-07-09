@@ -48,9 +48,9 @@ class CandidateController extends Controller
 
     public function update(Request $request, Candidate $candidate)
     {
-        $newVote=$request->votes;
+        $newVote=$request('votes');
 
-        $currentVotes=Candidate::where('name',$request->name)->get(['votes']);
+        $currentVotes=Candidate::where('name',$request('name'))->get(['votes']);
         $currentVote=$currentVotes->pluck('votes');
         $votes=$newVote+$currentVote[0];
 /*
@@ -60,9 +60,14 @@ class CandidateController extends Controller
         $trial = $image->move($imagePath,$imageName);
         //if($trial){}
             */
-            $candidate->update(['name' => $request->name,'position' => $request->position,'manifesto' => $request->manifesto,'votes' =>$votes ]);
-            $candidate = Candidate::all()->where('name',$request->name);
-        return response()->json($candidate);
+            $candidate->update([
+                'name' => $request('name'),
+                'position' => $request('position'),
+                'manifesto' => $request('manifesto'),
+                'votes' =>$votes 
+                ]);
+            
+        return $candidate;
     }
 
     public function delete(Candidate $candidate)
