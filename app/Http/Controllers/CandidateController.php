@@ -61,9 +61,9 @@ class CandidateController extends Controller
         //if($trial){}
             */
             $candidate->update([
-                'name' => $request('name'),
-                'position' => $request('position'),
-                'manifesto' => $request('manifesto'),
+                'name' => $request->name,
+                'position' => $request->position,
+                'manifesto' => $request->manifesto,
                 'votes' =>$votes 
                 ]);
             
