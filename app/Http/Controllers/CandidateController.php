@@ -48,7 +48,7 @@ class CandidateController extends Controller
 
     public function update(Request $request, Candidate $candidate)
     {
-        $newVote=$request('votes');
+        $newVote=$request(votes);
 
         $currentVotes=Candidate::where('name',$request('name'))->get(['votes']);
         $currentVote=$currentVotes->pluck('votes');
